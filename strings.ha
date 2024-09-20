@@ -9,6 +9,7 @@ export fn from_string(s: str) (bignum | invalid) = {
 	for (let i = 0z; i < len(cs); i += 1) {
 		const c = cs[i];
 		if (c < 48 || c > 57) {
+			free(bn);
 			return invalid;
 		};
 		bn[i] = c - 48;
@@ -18,6 +19,8 @@ export fn from_string(s: str) (bignum | invalid) = {
 
 @test fn from_string_happy_path() void = {
 	const bn = from_string("31415")!;
+	defer free(bn);
+
 	assert(bn[0] == 3);
 	assert(bn[1] == 1);
 	assert(bn[2] == 4);
