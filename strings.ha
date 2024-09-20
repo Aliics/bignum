@@ -31,3 +31,30 @@ export fn from_string(s: str) (bignum | invalid) = {
 @test fn from_string_invalid() void = {
 	assert(from_string("3a") is invalid);
 };
+
+// Converts a [[bignum]] to a utf8 string.
+// There is an assumption that this bignum is constructed correctly, and the
+// digits are all within the validation numeric range.
+export fn string(bn: bignum) str = {
+	// Remove padding prefix.
+	const p = if (len(bn) > 0 && bn[0] == 0) bn[1..] else bn;
+
+	const bs: []u8 = alloc([0...], len(p));
+	for (let i = 0z; i < len(p); i += 1) {
+		bs[i] = p[i] + 48;
+	};
+
+	// Unless the caller decided to be silly and construct their own...
+	// This a safe operation, but you never know. :-/
+	return strings::fromutf8_unsafe(bs);
+};
+
+@test fn string() void = {
+	const a = from_string("3742")!;
+	defer free(a);
+
+	const s = string(a);
+	defer free(s);
+
+	assert(s == "3742");
+};

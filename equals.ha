@@ -1,8 +1,8 @@
 // Compares two bignums, digit-by-digit. This makes it an O(n) computation.
 export fn equals(a: bignum, b: bignum) bool = {
 	// Compare without the padding, so optionally walk past the first item.
-	const pa = if (len(a) > 0 && a[0] == 0) a[1..] else a;
-	const pb = if (len(b) > 0 && b[0] == 0) b[1..] else b;
+	const pa = if (len(a) > 1 && a[0] == 0) a[1..] else a;
+	const pb = if (len(b) > 1 && b[0] == 0) b[1..] else b;
 
 	if (len(pa) != len(pb)) {
 		return false;
