@@ -1,7 +1,8 @@
 # hare - bignum
 
-bignum math in hare. Representation of a `bignum` is just an array of bytes,
-which I have aliased to be a `digit`. So, a sequence of digits...
+bignum math in [hare](https://harelang.org/). Representation of a `bignum` is
+just an array of bytes, which I have aliased to be a `digit`. 
+So, a sequence of digits...
 
 Anyways, most algorithms using bignums in this implementations are linear time,
 which means math operations are much more expensive than your usual integer
