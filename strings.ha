@@ -37,7 +37,7 @@ export fn from_string(s: str) (bignum | invalid) = {
 // digits are all within the validation numeric range.
 export fn string(bn: bignum) str = {
 	// Remove padding prefix.
-	const p = if (len(bn) > 0 && bn[0] == 0) bn[1..] else bn;
+	const p = bn[padding_end(bn)..];
 
 	const bs: []u8 = alloc([0...], len(p));
 	for (let i = 0z; i < len(p); i += 1) {
