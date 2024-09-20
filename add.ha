@@ -36,8 +36,10 @@ export fn add(a: bignum, b: bignum) bignum = {
 
 	const c = add(a, b);
 	defer free(c);
-	assert(c[0] == 0);
-	assert(c[1] == 3);
+
+	const want = from_string("3")!;
+	defer free(want);
+	assert(equals(c, want));
 };
 
 @test fn single_digit_add_with_rollover() void = {
@@ -48,8 +50,10 @@ export fn add(a: bignum, b: bignum) bignum = {
 
 	const c = add(a, b);
 	defer free(c);
-	assert(c[0] == 1);
-	assert(c[1] == 1);
+
+	const want = from_string("11")!;
+	defer free(want);
+	assert(equals(c, want));
 };
 
 @test fn double_digit_add() void = {
@@ -60,9 +64,10 @@ export fn add(a: bignum, b: bignum) bignum = {
 
 	const c = add(a, b);
 	defer free(c);
-	assert(c[0] == 0);
-	assert(c[1] == 9);
-	assert(c[2] == 4);
+
+	const want = from_string("94")!;
+	defer free(want);
+	assert(equals(c, want));
 };
 
 @test fn double_digit_add_with_double_rollover() void = {
@@ -73,9 +78,10 @@ export fn add(a: bignum, b: bignum) bignum = {
 
 	const c = add(a, b);
 	defer free(c);
-	assert(c[0] == 1);
-	assert(c[1] == 0);
-	assert(c[2] == 2);
+
+	const want = from_string("102")!;
+	defer free(want);
+	assert(equals(c, want));
 };
 
 @test fn many_digits_with_rollover() void = {
@@ -86,12 +92,10 @@ export fn add(a: bignum, b: bignum) bignum = {
 
 	const c = add(a, b);
 	defer free(c);
-	assert(c[0] == 1);
-	assert(c[1] == 0);
-	assert(c[2] == 0);
-	assert(c[3] == 0);
-	assert(c[4] == 0);
-	assert(c[5] == 6);
+
+	const want = from_string("100006")!;
+	defer free(want);
+	assert(equals(c, want));
 };
 
 @test fn some_very_large_numbers() void = {
@@ -102,16 +106,8 @@ export fn add(a: bignum, b: bignum) bignum = {
 
 	const c = add(a, b);
 	defer free(c);
-	assert(c[0] == 0);
-	assert(c[1] == 6);
-	assert(c[2] == 8);
-	assert(c[3] == 2);
-	assert(c[4] == 9);
-	assert(c[5] == 5);
-	assert(c[6] == 2);
-	assert(c[7] == 3);
-	assert(c[8] == 0);
-	assert(c[9] == 2);
-	assert(c[10] == 9);
-	assert(c[11] == 3);
+
+	const want = from_string("68295230293")!;
+	defer free(want);
+	assert(equals(c, want));
 };
