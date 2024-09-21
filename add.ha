@@ -8,7 +8,7 @@ export fn add(a: bignum, b: bignum) bignum = {
 	const ad = max - len(a);
 	const bd = max - len(b);
 
-	const c: bignum = alloc([0...], max + 1);
+	const c = new(max + 1);
 
 	let carry = false;
 	for (let i = max - 1; i >= 0 && i < max; i -= 1) {

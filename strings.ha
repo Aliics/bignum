@@ -5,7 +5,7 @@ use strings;
 // [[invalid]] error.
 export fn from_string(s: str) (bignum | invalid) = {
 	const cs = strings::toutf8(s);
-	const bn: bignum = alloc([0...], len(s));
+	const bn = new(len(s));
 	for (let i = 0z; i < len(cs); i += 1) {
 		const c = cs[i];
 		if (c < 48 || c > 57) {
