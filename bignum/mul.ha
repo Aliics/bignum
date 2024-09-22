@@ -12,9 +12,12 @@ export fn mul(a: bignum, b: bignum) bignum = {
 		free(r);
 	};
 
+	const pa = a[padding_end(a)..];
+	const pb = b[padding_end(b)..];
+
 	// Our left/right or top/bottom operands in our multiplication.
 	// Shortest goes on the bottom.
-	const ops = if (len(a) > len(b)) (a, b) else (b, a);
+	const ops = if (len(pa) > len(pb)) (pa, pb) else (pb, pa);
 
 	const llen = len(ops.0);
 	const rlen = len(ops.1);
