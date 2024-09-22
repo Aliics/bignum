@@ -1,5 +1,5 @@
-// Multiply two [[bignums]] together.
-// This is implemented as long division, so it's likely not very efficient.
+// Multiply two [[bignum]]s together.
+// This is implemented as long multiplication, so it's likely not very efficient.
 // This should be approximately O(Rn * Ln + Ln) time complexity.
 export fn mul(a: bignum, b: bignum) bignum = {
 	if (equals(a, zero) || equals(b, zero)) {
