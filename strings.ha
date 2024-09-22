@@ -38,6 +38,10 @@ export fn from_string(s: str) (bignum | invalid) = {
 export fn string(bn: bignum) str = {
 	// Remove padding prefix.
 	const p = bn[padding_end(bn)..];
+	if (len(p) == 0) {
+		// Early exit out if all we have is padding.
+		return string(zero);
+	};
 
 	const bs: []u8 = alloc([0...], len(p));
 	for (let i = 0z; i < len(p); i += 1) {
