@@ -1,3 +1,6 @@
+// Multiply two [[bignums]] together.
+// This is implemented as long division, so it's likely not very efficient.
+// This should be approximately O(Rn * Ln + Ln) time complexity.
 export fn mul(a: bignum, b: bignum) bignum = {
 	if (equals(a, zero) || equals(b, zero)) {
 		const z: bignum = alloc([0]);

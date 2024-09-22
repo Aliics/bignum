@@ -1,5 +1,6 @@
 use fmt;
 
+// Padding can now be a good number of zeroes. Thanks [[mul]].
 fn padding_end(bn: bignum) size = {
 	// Accomodate for zero values.
 	if (len(bn) == 0 || len(bn) == 1) {
