@@ -1,3 +1,4 @@
+// Is a greater than b?
 export fn greater_than(a: bignum, b: bignum) bool = {
 	const pa = a[padding_end(a)..];
 	const pb = b[padding_end(b)..];
